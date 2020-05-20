@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public bool hasSpeedFood = false;
     public int foodModAmount = 0;
 
+    public AudioClip jumpClip;
+
     private float foodTimeMax = 10f;
     private float foodTimeCurr = 0f;
 
@@ -34,8 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            jump = true;
-            animator.SetBool("IsJumping", true);
+            if(animator.GetBool("IsJumping") == false)
+            {
+                AudioSource.PlayClipAtPoint(jumpClip, transform.position);
+                jump = true;
+                animator.SetBool("IsJumping", true);
+            }
+            
         }
     }
 
