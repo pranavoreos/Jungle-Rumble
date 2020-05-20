@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    private Rigidbody rb;
 
     public float runSpeed = 25f;
     public bool hasJumpFood = false;
@@ -20,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jumpFlag = false;
     bool jump = false;
+
+    [SerializeField] private float hurtForce = 10f;
+
+    private enum State{ idle, running, jumping, falling}
+    private State state = State.idle;
 
     // Update is called once per frame
     void Update()
@@ -41,6 +47,32 @@ public class PlayerMovement : MonoBehaviour
                 AudioSource.PlayClipAtPoint(jumpClip, transform.position);
                 jump = true;
                 animator.SetBool("IsJumping", true);
+                state = State.falling;
+            }
+            
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy" && state == State.falling)
+        {
+            if(state == State.falling)
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                if(other.gameObject.transform.position.x > transform.position.x)
+                {
+                    //Enermy is to my right therefore I should be damaged and move left
+                    rb.velocity = new Vector3(-hurtForce, rb.velocity.y);
+                }
+                else
+                {
+                    //enemy is to my left therefore I should be damaged and move right
+                    rb.velocity = new Vector3(hurtForce, rb.velocity.y);
+                }
             }
             
         }
