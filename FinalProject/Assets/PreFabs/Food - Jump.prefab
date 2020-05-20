@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodtype: 1
   foodModAmount: 250
+  pickupClip: {fileID: 8300000, guid: 2c0e84ccc79fa5e48b55ed9eb499b83f, type: 3}
 --- !u!114 &-3208020200255964417
 MonoBehaviour:
   m_ObjectHideFlags: 0

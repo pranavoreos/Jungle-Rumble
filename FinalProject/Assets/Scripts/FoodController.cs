@@ -12,10 +12,12 @@ public class FoodController : MonoBehaviour
 
     public FoodType foodtype;
     public int foodModAmount = 0;
+    public AudioClip pickupClip;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 9)
+        AudioSource.PlayClipAtPoint(pickupClip, transform.position);
+        if (collision.gameObject.layer == 9)
         {
             if(foodtype == FoodType.Jump)
             {

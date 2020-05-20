@@ -149,4 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cd85d6c50f3499b9fb4cf59f89c505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupClup: {fileID: 8300000, guid: 5ac6242608b593342802f2c42954d298, type: 3}
+  pickupClip: {fileID: 8300000, guid: 13f25a3dd0c8a214d8dad129a4d41151, type: 3}
+  stars: 0
