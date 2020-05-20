@@ -5,6 +5,7 @@ using UnityEngine;
 public class StarPickup : MonoBehaviour
 {
     public AudioClip pickupClup;
+    public int stars = 0;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,6 +13,7 @@ public class StarPickup : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(pickupClup, transform.position);
             Destroy(this.gameObject);
+            stars += 1;
         }
     }
 }

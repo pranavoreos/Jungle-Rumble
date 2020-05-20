@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     bool jumpFlag = false;
     bool jump = false;
 
+    public int stars = 0;
+
     [SerializeField] private float hurtForce = 10f;
 
     private enum State{ idle, running, jumping, falling}
@@ -50,6 +52,14 @@ public class PlayerMovement : MonoBehaviour
                 state = State.falling;
             }
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Star"))  
+        {
+            stars += 1;
         }
     }
 
