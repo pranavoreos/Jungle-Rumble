@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int health = 100;
+    public Animator animator;
+
+    public GameObject deathEffect;
+
+    public void TakeDamge(int damage)
     {
-        
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Die()
     {
-        
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }
+    

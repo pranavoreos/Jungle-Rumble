@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private enum State{ idle, running, jumping, falling}
     private State state = State.idle;
 
+
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jumpFlag = false;
+            state = State.falling;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -49,10 +51,12 @@ public class PlayerMovement : MonoBehaviour
                 AudioSource.PlayClipAtPoint(jumpClip, transform.position);
                 jump = true;
                 animator.SetBool("IsJumping", true);
-                state = State.falling;
+                
             }
             
         }
+
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -115,4 +119,6 @@ public class PlayerMovement : MonoBehaviour
             jumpFlag = true;
         }
     }
+
+   
 }

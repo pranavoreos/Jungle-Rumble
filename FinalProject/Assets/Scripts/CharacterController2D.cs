@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+
 	[Header("Events")]
 	[Space]
 
@@ -32,7 +33,9 @@ public class CharacterController2D : MonoBehaviour
 
 	public float m_JumpForceMod = 0f;
 
-	private void Awake()
+    
+
+    private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -145,4 +148,6 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+    
 }
