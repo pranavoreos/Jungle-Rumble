@@ -13,10 +13,15 @@ public class PlayerMovement : MonoBehaviour
     public bool hasSpeedFood = false;
     public int foodModAmount = 0;
 
+
     public AudioClip jumpClip;
+    public AudioClip speedClip;
 
     private float foodTimeMax = 10f;
     private float foodTimeCurr = 0f;
+
+    private float speedTimeMax = 2f;
+    private float speedTimeCurr = 0f;
 
     float horizontalMove = 0f;
     bool jumpFlag = false;
@@ -117,6 +122,18 @@ public class PlayerMovement : MonoBehaviour
         if (jump)
         {
             jumpFlag = true;
+        }
+
+        if(hasSpeedFood && speedTimeCurr < speedTimeMax)
+        {
+            controller.m_SpeedForceMod = foodModAmount;
+            speedTimeCurr += Time.fixedDeltaTime;
+        }
+        else
+        {
+            speedTimeCurr = 0f;
+            controller.m_SpeedForceMod = 0;
+            hasSpeedFood = false;
         }
     }
 
